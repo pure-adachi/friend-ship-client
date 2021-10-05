@@ -1,0 +1,13 @@
+schema:
+  - ${REACT_APP_SERVER_URL}/graphql:
+      headers:
+        X-Forwarded-User: example_token
+documents:
+  - ./graphql/mutations/*.graphql
+  - ./graphql/queries/*.graphql
+generates:
+  ./src/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

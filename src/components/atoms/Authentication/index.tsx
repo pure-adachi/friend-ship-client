@@ -1,19 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Redirect } from "react-router";
-import LoginForm from "../../organisms/LoginForm";
 import { useIsLoggedInQuery } from "../../../generated/graphql";
 
-const Login = () => {
+interface Props {
+  children: ReactNode;
+}
+
+const Authentication = ({ children }: Props) => {
   const { loading, data } = useIsLoggedInQuery({ fetchPolicy: "network-only" });
   const viewer = data?.viewer;
 
   if (loading) {
     return <>Loading ...</>;
-  } else if (viewer) {
-    return <Redirect to="/" />;
+  } else if (!viewer) {
+    return <Redirect to="/login" />;
   }
 
-  return <LoginForm />;
+  return <>{children}</>;
 };
 
-export default Login;
+export default Authentication;
