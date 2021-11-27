@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
+import GlobalHeader from "../../molecules/GlobalHeader";
 import Authentication from "../../atoms/Authentication";
-
 interface Props {
   children: ReactNode;
 }
@@ -8,7 +8,8 @@ interface Props {
 const Frame = ({ children }: Props) => {
   return (
     <Authentication>
-      <div className="main">{children}</div>
+      <GlobalHeader />
+      <div className="fixed inset-0 top-10 p-3 overflow-auto">{children}</div>
     </Authentication>
   );
 };

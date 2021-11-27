@@ -1,0 +1,9 @@
+mutation createOffer($sdp: String!) {
+  createOffer(input: { sdp: $sdp }) {
+    offer {
+      id
+      sdp
+    }
+    result
+  }
+}

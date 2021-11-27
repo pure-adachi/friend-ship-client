@@ -1,0 +1,9 @@
+mutation createAnswer($offerId: String!, $sdp: String!) {
+  createAnswer(input: { offerId: $offerId, sdp: $sdp }) {
+    answer {
+      id
+      sdp
+    }
+    result
+  }
+}
