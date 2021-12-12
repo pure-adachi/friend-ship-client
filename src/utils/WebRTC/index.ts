@@ -64,8 +64,10 @@ class WebRTC {
   }
 
   public disconnect(userGuid: string) {
-    this.peerConnections[userGuid].channel.close();
-    delete this.peerConnections[userGuid];
+    if (this.peerConnections[userGuid]) {
+      this.peerConnections[userGuid].channel.close();
+      delete this.peerConnections[userGuid];
+    }
   }
 
   public setOffer(senderGuid: string, sdp: string) {
@@ -101,9 +103,15 @@ class WebRTC {
       sdp,
     });
 
-    this.peerConnections[senderGuid].connection.setRemoteDescription(
-      description
-    );
+    this.peerConnections[senderGuid].connection
+      .setRemoteDescription(description)
+      .catch((e) => {
+        console.log(
+          "error setRemoteDescription",
+          e,
+          this.peerConnections[senderGuid]
+        );
+      });
   }
 
   private initPeerConnection(
@@ -122,12 +130,14 @@ class WebRTC {
 
     if (userGuid === "VXNlci0y") {
       connection.onnegotiationneeded = (event) => {
+        console.log("onnegotiationneeded", event);
+
         if (!this.peerConnections[userGuid].connection.localDescription) return;
         if (!this.peerConnections[userGuid].connection.remoteDescription)
           return;
 
         // Add Trackした時に通る
-        console.log("onnegotiationneeded", event);
+        console.log("onnegotiationneeded add track", event);
 
         this.createOffer(userGuid).then((sessionDescription) => {
           const str = JSON.stringify(sessionDescription);
@@ -155,13 +165,13 @@ class WebRTC {
       // datachannel open時に通る
       console.log("ondatachannel", event);
       this.peerConnections[userGuid].channel = event.channel;
+
+      this.addVideoTrack(userGuid);
+      this.addAudioTrack(userGuid);
     };
 
     channel.onopen = () => {
       console.log("datachannel open");
-
-      this.addVideoTrack(userGuid);
-      this.addAudioTrack(userGuid);
     };
 
     channel.onclose = () => {
@@ -180,11 +190,16 @@ class WebRTC {
         console.log("onmessage text", msg);
       } else if (obj.type === "offer") {
         console.log("onmessage offer");
-        this.peerConnections[userGuid].connection.setRemoteDescription(obj);
-        this.createAnswer(userGuid).then((sessionDescription) => {
-          const str = JSON.stringify(sessionDescription);
-          this.peerConnections[userGuid].channel.send(str);
-        });
+        this.peerConnections[userGuid].connection
+          .setRemoteDescription(obj)
+          .then(() => {
+            console.log("create answer");
+            this.createAnswer(userGuid).then((sessionDescription) => {
+              console.log("created answer");
+              const str = JSON.stringify(sessionDescription);
+              this.peerConnections[userGuid].channel.send(str);
+            });
+          });
       } else if (obj.type === "answer") {
         console.log("onmessage answer");
         this.peerConnections[userGuid].connection.setRemoteDescription(obj);
