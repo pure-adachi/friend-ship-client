@@ -1,5 +1,0 @@
-query onlineUsers {
-  onlineUsers {
-    id
-  }
-}

@@ -49,7 +49,6 @@ export type MutationLoginArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  onlineUsers?: Maybe<Array<User>>;
   viewer?: Maybe<User>;
 };
 
@@ -67,11 +66,6 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'LoginPayload', result?: boolean | null | undefined, user?: { __typename?: 'User', accessToken?: { __typename?: 'AccessToken', token: string } | null | undefined } | null | undefined } | null | undefined };
-
-export type OnlineUsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type OnlineUsersQuery = { __typename?: 'Query', onlineUsers?: Array<{ __typename?: 'User', id: string }> | null | undefined };
 
 export type ViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -123,40 +117,6 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
-export const OnlineUsersDocument = gql`
-    query onlineUsers {
-  onlineUsers {
-    id
-  }
-}
-    `;
-
-/**
- * __useOnlineUsersQuery__
- *
- * To run a query within a React component, call `useOnlineUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useOnlineUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOnlineUsersQuery({
- *   variables: {
- *   },
- * });
- */
-export function useOnlineUsersQuery(baseOptions?: Apollo.QueryHookOptions<OnlineUsersQuery, OnlineUsersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OnlineUsersQuery, OnlineUsersQueryVariables>(OnlineUsersDocument, options);
-      }
-export function useOnlineUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OnlineUsersQuery, OnlineUsersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OnlineUsersQuery, OnlineUsersQueryVariables>(OnlineUsersDocument, options);
-        }
-export type OnlineUsersQueryHookResult = ReturnType<typeof useOnlineUsersQuery>;
-export type OnlineUsersLazyQueryHookResult = ReturnType<typeof useOnlineUsersLazyQuery>;
-export type OnlineUsersQueryResult = Apollo.QueryResult<OnlineUsersQuery, OnlineUsersQueryVariables>;
 export const ViewerDocument = gql`
     query viewer {
   viewer {
