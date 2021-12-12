@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://pure-adachi.github.io/friend-ship-client/static/css/main.1f521265.chunk.css",
-    "main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/main.5610381d.chunk.js",
-    "main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/main.5610381d.chunk.js.map",
+    "main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/main.d8633391.chunk.js",
+    "main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/main.d8633391.chunk.js.map",
     "runtime-main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.fd0ccf1f.js",
     "runtime-main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.fd0ccf1f.js.map",
     "static/css/2.4e2e898f.chunk.css": "https://pure-adachi.github.io/friend-ship-client/static/css/2.4e2e898f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.4e2e898f.chunk.css",
     "static/js/2.0340fcf8.chunk.js",
     "static/css/main.1f521265.chunk.css",
-    "static/js/main.5610381d.chunk.js"
+    "static/js/main.d8633391.chunk.js"
   ]
 }
