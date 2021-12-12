@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router-dom";
 import { useViewerIdQuery } from "../../../generated/graphql";
 
 interface Props {
@@ -13,7 +13,7 @@ const Authentication = ({ children }: Props) => {
   if (loading) {
     return <>Loading ...</>;
   } else if (!viewer) {
-    return <Redirect to="/login" />;
+    return <Navigate to="/login" />;
   }
 
   return <>{children}</>;

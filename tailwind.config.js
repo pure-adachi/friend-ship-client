@@ -9,5 +9,5 @@ module.exports = {
       backgroundColor: ["disabled"],
     },
   },
-  plugins: [],
+  plugins: [{ tailwindcss: {} }, { autoprefixer: {} }],
 };

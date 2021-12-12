@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router-dom";
 import LoginForm from "../../organisms/LoginForm";
 import { useViewerIdQuery } from "../../../generated/graphql";
 
@@ -10,7 +10,7 @@ const Login = () => {
   if (loading) {
     return <>Loading ...</>;
   } else if (viewer) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return <LoginForm />;

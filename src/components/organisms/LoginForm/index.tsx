@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLockOpen } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import InputText from "../../atoms/InputText";
 import InputPassword from "../../atoms/InputPassword";
 import { useLoginMutation } from "../../../generated/graphql";
 
 const LoginForm = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const [loginid, setLoginid] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [login, { loading }] = useLoginMutation({
@@ -20,7 +20,7 @@ const LoginForm = () => {
       if (response?.result && token) {
         toast.success("Successful login");
         localStorage.setItem("access_token", token);
-        history.push("/");
+        history("/");
       } else {
         toast.error("Login failed");
       }
