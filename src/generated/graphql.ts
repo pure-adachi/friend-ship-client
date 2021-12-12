@@ -49,6 +49,7 @@ export type MutationLoginArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  onlineUsers?: Maybe<Array<User>>;
   viewer?: Maybe<User>;
 };
 
@@ -59,11 +60,6 @@ export type User = {
   name?: Maybe<Scalars['String']>;
 };
 
-export type IsLoggedInQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type IsLoggedInQuery = { __typename?: 'Query', viewer?: { __typename?: 'User', id: string } | null | undefined };
-
 export type LoginMutationVariables = Exact<{
   loginid: Scalars['String'];
   password: Scalars['String'];
@@ -72,41 +68,22 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'LoginPayload', result?: boolean | null | undefined, user?: { __typename?: 'User', accessToken?: { __typename?: 'AccessToken', token: string } | null | undefined } | null | undefined } | null | undefined };
 
+export type OnlineUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const IsLoggedInDocument = gql`
-    query isLoggedIn {
-  viewer {
-    id
-  }
-}
-    `;
 
-/**
- * __useIsLoggedInQuery__
- *
- * To run a query within a React component, call `useIsLoggedInQuery` and pass it any options that fit your needs.
- * When your component renders, `useIsLoggedInQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useIsLoggedInQuery({
- *   variables: {
- *   },
- * });
- */
-export function useIsLoggedInQuery(baseOptions?: Apollo.QueryHookOptions<IsLoggedInQuery, IsLoggedInQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<IsLoggedInQuery, IsLoggedInQueryVariables>(IsLoggedInDocument, options);
-      }
-export function useIsLoggedInLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IsLoggedInQuery, IsLoggedInQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<IsLoggedInQuery, IsLoggedInQueryVariables>(IsLoggedInDocument, options);
-        }
-export type IsLoggedInQueryHookResult = ReturnType<typeof useIsLoggedInQuery>;
-export type IsLoggedInLazyQueryHookResult = ReturnType<typeof useIsLoggedInLazyQuery>;
-export type IsLoggedInQueryResult = Apollo.QueryResult<IsLoggedInQuery, IsLoggedInQueryVariables>;
+export type OnlineUsersQuery = { __typename?: 'Query', onlineUsers?: Array<{ __typename?: 'User', id: string }> | null | undefined };
+
+export type ViewerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ViewerQuery = { __typename?: 'Query', viewer?: { __typename?: 'User', id: string, name?: string | null | undefined } | null | undefined };
+
+export type ViewerIdQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ViewerIdQuery = { __typename?: 'Query', viewer?: { __typename?: 'User', id: string } | null | undefined };
+
+
 export const LoginDocument = gql`
     mutation login($loginid: String!, $password: String!) {
   login(input: {loginid: $loginid, password: $password}) {
@@ -146,3 +123,106 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const OnlineUsersDocument = gql`
+    query onlineUsers {
+  onlineUsers {
+    id
+  }
+}
+    `;
+
+/**
+ * __useOnlineUsersQuery__
+ *
+ * To run a query within a React component, call `useOnlineUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOnlineUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOnlineUsersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useOnlineUsersQuery(baseOptions?: Apollo.QueryHookOptions<OnlineUsersQuery, OnlineUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OnlineUsersQuery, OnlineUsersQueryVariables>(OnlineUsersDocument, options);
+      }
+export function useOnlineUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OnlineUsersQuery, OnlineUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OnlineUsersQuery, OnlineUsersQueryVariables>(OnlineUsersDocument, options);
+        }
+export type OnlineUsersQueryHookResult = ReturnType<typeof useOnlineUsersQuery>;
+export type OnlineUsersLazyQueryHookResult = ReturnType<typeof useOnlineUsersLazyQuery>;
+export type OnlineUsersQueryResult = Apollo.QueryResult<OnlineUsersQuery, OnlineUsersQueryVariables>;
+export const ViewerDocument = gql`
+    query viewer {
+  viewer {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useViewerQuery__
+ *
+ * To run a query within a React component, call `useViewerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useViewerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useViewerQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useViewerQuery(baseOptions?: Apollo.QueryHookOptions<ViewerQuery, ViewerQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ViewerQuery, ViewerQueryVariables>(ViewerDocument, options);
+      }
+export function useViewerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ViewerQuery, ViewerQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ViewerQuery, ViewerQueryVariables>(ViewerDocument, options);
+        }
+export type ViewerQueryHookResult = ReturnType<typeof useViewerQuery>;
+export type ViewerLazyQueryHookResult = ReturnType<typeof useViewerLazyQuery>;
+export type ViewerQueryResult = Apollo.QueryResult<ViewerQuery, ViewerQueryVariables>;
+export const ViewerIdDocument = gql`
+    query viewerId {
+  viewer {
+    id
+  }
+}
+    `;
+
+/**
+ * __useViewerIdQuery__
+ *
+ * To run a query within a React component, call `useViewerIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useViewerIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useViewerIdQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useViewerIdQuery(baseOptions?: Apollo.QueryHookOptions<ViewerIdQuery, ViewerIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ViewerIdQuery, ViewerIdQueryVariables>(ViewerIdDocument, options);
+      }
+export function useViewerIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ViewerIdQuery, ViewerIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ViewerIdQuery, ViewerIdQueryVariables>(ViewerIdDocument, options);
+        }
+export type ViewerIdQueryHookResult = ReturnType<typeof useViewerIdQuery>;
+export type ViewerIdLazyQueryHookResult = ReturnType<typeof useViewerIdLazyQuery>;
+export type ViewerIdQueryResult = Apollo.QueryResult<ViewerIdQuery, ViewerIdQueryVariables>;

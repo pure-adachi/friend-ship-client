@@ -1,10 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router";
 import LoginForm from "../../organisms/LoginForm";
-import { useIsLoggedInQuery } from "../../../generated/graphql";
+import { useViewerIdQuery } from "../../../generated/graphql";
 
 const Login = () => {
-  const { loading, data } = useIsLoggedInQuery({ fetchPolicy: "network-only" });
+  const { loading, data } = useViewerIdQuery({ fetchPolicy: "network-only" });
   const viewer = data?.viewer;
 
   if (loading) {

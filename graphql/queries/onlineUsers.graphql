@@ -1,0 +1,5 @@
+query onlineUsers {
+  onlineUsers {
+    id
+  }
+}
