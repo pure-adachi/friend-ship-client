@@ -32,9 +32,11 @@ class WebAgent {
       this.rtc.setup(),
       this.publicCable.setup(),
       this.myCable.setup(),
-    ]).then(() => {
-      this.publicCable.notifyOnline();
-    });
+    ]).then(() => console.log("completed setup"));
+  }
+
+  public join() {
+    this.publicCable.notifyOnline();
   }
 }
 

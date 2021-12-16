@@ -15,14 +15,7 @@ const OnlineRoom = () => {
     return <>Failed</>;
   } else {
     return (
-      <div>
-        <div>
-          {userName}: {userId}
-        </div>
-        <div>
-          <WebRTCRoom currentUserId={userId} />
-        </div>
-      </div>
+      <WebRTCRoom currentUserId={userId} currentUserName={userName || ""} />
     );
   }
 };

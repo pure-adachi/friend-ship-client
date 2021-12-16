@@ -19,6 +19,9 @@ class WebRTC {
   private isEnableVideo: boolean = true;
   private handleUpdate: Function;
   private handleError: Function;
+  private audioInputId: string = "";
+  private audioOutputId: string = "";
+  private videoInputId: string = "";
 
   constructor(
     currentUserId: string,
@@ -34,8 +37,8 @@ class WebRTC {
     return new Promise(async (resolve) => {
       await navigator.mediaDevices
         .getUserMedia({
-          audio: this.isEnableAudio,
-          video: this.isEnableVideo,
+          audio: this.isEnableAudio && { deviceId: this.audioInputId },
+          video: this.isEnableVideo && { deviceId: this.videoInputId },
         })
         .then((stream) => {
           this.localStream = stream;
@@ -66,7 +69,17 @@ class WebRTC {
   public disconnect(userGuid: string) {
     if (this.peerConnections[userGuid]) {
       this.peerConnections[userGuid].channel.close();
+      const videoTracks =
+        this.peerConnections[userGuid].videoStream?.getTracks() || [];
+      const audioTracks =
+        this.peerConnections[userGuid].audioStream?.getTracks() || [];
+      const traks = [...videoTracks, ...audioTracks];
+      traks.forEach((track) => {
+        track.stop();
+      });
       delete this.peerConnections[userGuid];
+
+      this.handleUpdate();
     }
   }
 
@@ -112,6 +125,27 @@ class WebRTC {
           this.peerConnections[senderGuid]
         );
       });
+  }
+
+  public changeDevise({
+    audioInputId,
+    videoInputId,
+  }: {
+    audioInputId?: string;
+    audioOutputId?: string;
+    videoInputId?: string;
+  }): Promise<MediaStream> {
+    this.audioInputId = audioInputId || this.audioInputId;
+    this.videoInputId = videoInputId || this.videoInputId;
+
+    const options = {
+      audio: this.isEnableAudio && { deviceId: this.audioInputId },
+      video: this.isEnableVideo && { deviceId: this.videoInputId },
+    };
+
+    return navigator.mediaDevices.getUserMedia(options).then((stream) => {
+      return (this.localStream = stream);
+    });
   }
 
   private initPeerConnection(
@@ -238,10 +272,20 @@ class WebRTC {
   }
 
   private addVideoTrack(userGuid: string) {
+    // navigator.mediaDevices
+    //   .getUserMedia({
+    //     video: { deviceId: { exact: this.videoId } },
+    //   })
+    //   .then((stream) => {
     if (!this.localStream) return;
+    // this.localStream = stream;
+    // debugger;
+    // this.handleUpdate();
 
     const track = this.localStream.getVideoTracks()[0];
+    // const track = stream.getVideoTracks()[0];
     this.peerConnections[userGuid].connection.addTrack(track, this.localStream);
+    // });
   }
 
   private addAudioTrack(userGuid: string) {

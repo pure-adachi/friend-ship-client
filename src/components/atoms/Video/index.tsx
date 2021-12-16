@@ -18,7 +18,7 @@ const Video = ({ stream }: Props) => {
     return () => stream.getTracks().forEach((track) => track.stop());
   }, [stream]);
 
-  return <video ref={videoElm} autoPlay playsInline />;
+  return <video ref={videoElm} autoPlay playsInline className="w-60 border" />;
 };
 
 export default Video;
