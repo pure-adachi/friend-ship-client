@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "https://pure-adachi.github.io/friend-ship-client/static/css/main.1f521265.chunk.css",
-    "main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/main.bfb63145.chunk.js",
-    "main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/main.bfb63145.chunk.js.map",
-    "runtime-main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.fd0ccf1f.js",
-    "runtime-main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.fd0ccf1f.js.map",
+    "main.css": "https://pure-adachi.github.io/friend-ship-client/static/css/main.e8e08bb9.chunk.css",
+    "main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/main.9d33cdfe.chunk.js",
+    "main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/main.9d33cdfe.chunk.js.map",
+    "runtime-main.js": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.df70b90e.js",
+    "runtime-main.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/runtime-main.df70b90e.js.map",
     "static/css/2.4e2e898f.chunk.css": "https://pure-adachi.github.io/friend-ship-client/static/css/2.4e2e898f.chunk.css",
-    "static/js/2.0340fcf8.chunk.js": "https://pure-adachi.github.io/friend-ship-client/static/js/2.0340fcf8.chunk.js",
-    "static/js/2.0340fcf8.chunk.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/2.0340fcf8.chunk.js.map",
-    "static/js/3.a284d8c1.chunk.js": "https://pure-adachi.github.io/friend-ship-client/static/js/3.a284d8c1.chunk.js",
-    "static/js/3.a284d8c1.chunk.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/3.a284d8c1.chunk.js.map",
+    "static/js/2.25bb0ada.chunk.js": "https://pure-adachi.github.io/friend-ship-client/static/js/2.25bb0ada.chunk.js",
+    "static/js/2.25bb0ada.chunk.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/2.25bb0ada.chunk.js.map",
+    "static/js/3.0021df00.chunk.js": "https://pure-adachi.github.io/friend-ship-client/static/js/3.0021df00.chunk.js",
+    "static/js/3.0021df00.chunk.js.map": "https://pure-adachi.github.io/friend-ship-client/static/js/3.0021df00.chunk.js.map",
     "index.html": "https://pure-adachi.github.io/friend-ship-client/index.html",
     "static/css/2.4e2e898f.chunk.css.map": "https://pure-adachi.github.io/friend-ship-client/static/css/2.4e2e898f.chunk.css.map",
-    "static/css/main.1f521265.chunk.css.map": "https://pure-adachi.github.io/friend-ship-client/static/css/main.1f521265.chunk.css.map",
-    "static/js/2.0340fcf8.chunk.js.LICENSE.txt": "https://pure-adachi.github.io/friend-ship-client/static/js/2.0340fcf8.chunk.js.LICENSE.txt"
+    "static/css/main.e8e08bb9.chunk.css.map": "https://pure-adachi.github.io/friend-ship-client/static/css/main.e8e08bb9.chunk.css.map",
+    "static/js/2.25bb0ada.chunk.js.LICENSE.txt": "https://pure-adachi.github.io/friend-ship-client/static/js/2.25bb0ada.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.fd0ccf1f.js",
+    "static/js/runtime-main.df70b90e.js",
     "static/css/2.4e2e898f.chunk.css",
-    "static/js/2.0340fcf8.chunk.js",
-    "static/css/main.1f521265.chunk.css",
-    "static/js/main.bfb63145.chunk.js"
+    "static/js/2.25bb0ada.chunk.js",
+    "static/css/main.e8e08bb9.chunk.css",
+    "static/js/main.9d33cdfe.chunk.js"
   ]
 }
